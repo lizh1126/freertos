@@ -1,0 +1,10 @@
+# VS Code
+.vscode/
+
+# 编译输出
+Output/
+
+# Keil 个人配置（固定路径写法）
+Project/RVMDK/*.uvguix.*
+Project/RVMDK/*.uvoptx
+Project/RVMDK/DebugConfig/
