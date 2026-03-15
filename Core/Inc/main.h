@@ -61,6 +61,7 @@ void Error_Handler(void);
 #define LED_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
+#define LED_Toggle HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin)
 
 /* USER CODE END Private defines */
 
