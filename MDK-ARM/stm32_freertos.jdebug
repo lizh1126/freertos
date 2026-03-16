@@ -33,6 +33,7 @@ void OnProjectLoad (void) {
   //
   // User settings
   //
+  Project.SetOSPlugin ("FreeRTOSPlugin_Cortex-M");
   File.Open ("$(ProjectDir)/stm32h743_freertos/stm32h743_freertos.axf");
 }
 
