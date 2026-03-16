@@ -46,6 +46,18 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
+osThreadId_t ledTaskHandle;
+uint32_t ledTaskBuffer[128];
+StaticTask_t ledTaskControlBlock;
+
+const osThreadAttr_t ledTask_attributes = {
+  .name = "ledTask",
+  .cb_mem = &ledTaskControlBlock,
+  .cb_size = sizeof(ledTaskControlBlock),
+  .stack_mem = &ledTaskBuffer[0],
+  .stack_size = sizeof(ledTaskBuffer),
+  .priority = (osPriority_t) osPriorityNormal,
+};
 
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
@@ -58,6 +70,7 @@ const osThreadAttr_t defaultTask_attributes = {
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
+void StartLedTask(void *argument);
 
 /* USER CODE END FunctionPrototypes */
 
@@ -96,7 +109,7 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
-  /* add threads, ... */
+  ledTaskHandle = osThreadNew(StartLedTask, NULL, &ledTask_attributes);
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */
@@ -125,6 +138,18 @@ void StartDefaultTask(void *argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-
+/**
+ * @brief  Function implementing the ledTask thread.
+ * @param  argument: Not used
+ * @retval None
+ */
+void StartLedTask(void *argument)
+{
+    for (;;)
+    {
+        HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+        osDelay(500);
+    }
+}
 /* USER CODE END Application */
 
