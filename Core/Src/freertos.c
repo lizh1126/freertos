@@ -47,16 +47,11 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
 osThreadId_t ledTaskHandle;
-uint32_t ledTaskBuffer[128];
-StaticTask_t ledTaskControlBlock;
 
 const osThreadAttr_t ledTask_attributes = {
   .name = "ledTask",
-  .cb_mem = &ledTaskControlBlock,
-  .cb_size = sizeof(ledTaskControlBlock),
-  .stack_mem = &ledTaskBuffer[0],
-  .stack_size = sizeof(ledTaskBuffer),
-  .priority = (osPriority_t) osPriorityNormal,
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityAboveNormal,
 };
 
 /* USER CODE END Variables */
@@ -148,7 +143,7 @@ void StartLedTask(void *argument)
     for (;;)
     {
         HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-        osDelay(500);
+        osDelay(1000);
     }
 }
 /* USER CODE END Application */
