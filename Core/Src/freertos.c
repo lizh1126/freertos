@@ -23,6 +23,7 @@
 #include "main.h"
 #include "FreeRTOS.h"
 #include "cmsis_os2.h"
+#include "bsp_led.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -142,8 +143,8 @@ void StartLedTask(void *argument)
 {
     for (;;)
     {
-        HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-        osDelay(1000);
+        led_toggle(&bsp_led1);
+        osDelay(2000);
     }
 }
 /* USER CODE END Application */

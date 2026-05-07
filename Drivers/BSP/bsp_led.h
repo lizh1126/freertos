@@ -28,15 +28,26 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
 
 /* USER CODE BEGIN Private defines */
+#define LED_Pin GPIO_PIN_3
+#define LED_GPIO_Port GPIOE
 
 /* USER CODE END Private defines */
 
-void MX_GPIO_Init(void);
+/* bsp_led.h */
+typedef enum {
+    LED_OFF = 0,
+    LED_ON  = 1,
+} led_status_t;
+
+typedef struct led_dev led_dev_t;
+
+int led_init(const led_dev_t *led);
+int led_ctl(const led_dev_t *led, led_status_t status);
+int led_toggle(const led_dev_t *led);
+
+extern const led_dev_t bsp_led1;
 
 /* USER CODE BEGIN Prototypes */
 
