@@ -23,11 +23,10 @@
 #include "main.h"
 #include "FreeRTOS.h"
 #include "cmsis_os2.h"
-#include "bsp_led.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "app_led_task.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -66,7 +65,6 @@ const osThreadAttr_t defaultTask_attributes = {
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-void StartLedTask(void *argument);
 
 /* USER CODE END FunctionPrototypes */
 
@@ -132,20 +130,6 @@ void StartDefaultTask(void *argument)
   /* USER CODE END StartDefaultTask */
 }
 
-/* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-/**
- * @brief  Function implementing the ledTask thread.
- * @param  argument: Not used
- * @retval None
- */
-void StartLedTask(void *argument)
-{
-    for (;;)
-    {
-        led_toggle(&bsp_led1);
-        osDelay(2000);
-    }
-}
-/* USER CODE END Application */
 
+/* USER CODE END Application */
