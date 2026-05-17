@@ -20,10 +20,10 @@
 #include "main.h"
 #include "FreeRTOS.h"
 #include "cmsis_os2.h"
-#include "bsp_led.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "bsp_led.h"
 
 /* USER CODE END Includes */
 
@@ -84,11 +84,12 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
+  led_init(&bsp_led1);
 
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  led_init(&bsp_led1);
+
 
   /* Init scheduler */
   osKernelInitialize();  /* Call init function for freertos objects (in cmsis_os2.c) */
