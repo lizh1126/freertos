@@ -24,6 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "bsp_led.h"
+#include "bsp_key.h"
 
 /* USER CODE END Includes */
 
