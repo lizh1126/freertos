@@ -124,15 +124,7 @@ const led_dev_t bsp_led1 = {
     .hw = &bsp_led1_hw,
 };
 
-
 /* USER CODE END 1 */
-
-/** Configure pins
-     PH0-OSC_IN (PH0)   ------> RCC_OSC_IN
-     PH1-OSC_OUT (PH1)   ------> RCC_OSC_OUT
-     PA13 (JTMS/SWDIO)   ------> DEBUG_JTMS-SWDIO
-     PA14 (JTCK/SWCLK)   ------> DEBUG_JTCK-SWCLK
-*/
 
 /* USER CODE BEGIN 2 */
 
