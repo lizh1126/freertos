@@ -20,6 +20,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "bsp_led.h"
+#include "bsp_gpio.h"
 
 /* USER CODE BEGIN 0 */
 typedef struct {
@@ -51,11 +52,9 @@ static int led_init_impl(const led_dev_t *led)
   GPIO_TypeDef *port = hw->port;
   uint16_t pin = hw->pin;
 
+  
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOE_CLK_ENABLE();
-  __HAL_RCC_GPIOH_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-
+  bsp_gpio_clk_enable(port);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(port, pin, GPIO_PIN_SET);
